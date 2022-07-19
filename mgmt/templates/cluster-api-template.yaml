@@ -8,10 +8,10 @@ spec:
     pods:
       cidrBlocks:
         - 192.168.0.0/16
-      serviceDomain: cluster.local
-      services:
-        cidrBlocks:
-          - 10.128.0.0/12
+    serviceDomain: cluster.local
+    services:
+      cidrBlocks:
+        - 10.128.0.0/12
   controlPlaneRef:
     apiVersion: controlplane.cluster.x-k8s.io/v1beta1
     kind: KubeadmControlPlane
@@ -25,14 +25,14 @@ spec:
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: DockerCluster
-meta:
+metadata:
   name: {{ .Values.cluster.name }}
   namespace: default
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: DockerMachineTemplate
 metadata:
-  name: {{  .Values.cluster.name }}-control-plane
+  name: {{ .Values.cluster.name }}-control-plane
   namespace: default
 spec:
   template:
@@ -75,7 +75,7 @@ spec:
       name: {{ .Values.cluster.name }}-control-plane
       namespace: default
   replicas: {{ .Values.cluster.masterNodes }}
-  version: {{ .Values.cluster.version}}
+  version: {{ .Values.cluster.version }}
 ---
 apiVersion: infrastructure.cluster.x-k8s.io/v1beta1
 kind: DockerMachineTemplate
